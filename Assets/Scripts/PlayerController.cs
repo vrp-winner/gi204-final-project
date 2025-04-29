@@ -4,8 +4,14 @@ public class PlayerController : MonoBehaviour
 {
     public float jumpForce = 100f;
     public bool isJumping = false;
+    private bool isGameOver = false;
     
     private Rigidbody2D rb2d;
+
+    public bool GetIsGameOver()
+    {
+        return isGameOver;
+    }
 
     void Start()
     {
@@ -14,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (isGameOver) return;
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
             rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -21,11 +28,25 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
+        }
+        
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            isGameOver = true;
+            
+            rb2d.linearVelocity = Vector2.zero;
+            rb2d.bodyType = RigidbodyType2D.Kinematic;
+            
+            Obstacle obstacleScript = collision.gameObject.GetComponent<Obstacle>();
+            if (obstacleScript != null)
+            {
+                obstacleScript.StopObstacle();
+            }
         }
     }
 }
