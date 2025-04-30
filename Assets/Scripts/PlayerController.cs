@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             isGameOver = true;
+            GameManager.Instance.GameOver();
             
             rb2d.linearVelocity = Vector2.zero;
             rb2d.bodyType = RigidbodyType2D.Kinematic;
