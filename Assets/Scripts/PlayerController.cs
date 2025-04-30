@@ -50,4 +50,9 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public float GetDistance()
+    {
+        return Mathf.Abs(rb2d.position.x - transform.position.x);
+    }
 }
