@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 m_EditorVersion: 6000.0.43f1
 m_EditorVersionWithRevision: 6000.0.43f1 (97272b72f107)
+=======
+m_EditorVersion: 6000.0.35f1
+m_EditorVersionWithRevision: 6000.0.35f1 (9a3bc604008a)
+>>>>>>> 08a1c8dd46c397333f2842c01d3816a33f13c231
