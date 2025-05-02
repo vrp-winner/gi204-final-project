@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    public float leftBound;
+    
     private ConstantForce2D myConstantForce;
     private Rigidbody2D rb;
 
@@ -9,6 +11,14 @@ public class Obstacle : MonoBehaviour
     {
         myConstantForce = GetComponent<ConstantForce2D>();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        if (transform.position.x < leftBound)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void StopObstacle()
